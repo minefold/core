@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    minefold-core (0.0.1)
+    core (0.0.1)
       active_model_serializers
       activerecord (~> 3.2)
 
@@ -40,5 +40,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  minefold-core!
+  core!
   rspec
