@@ -1,3 +1,8 @@
+require 'player'
+require 'serializers/funpack_serializer'
+require 'serializers/player_serializer'
+require 'serializers/user_serializer'
+
 class ServerSerializer < ActiveModel::Serializer
   root false
 
@@ -5,26 +10,26 @@ class ServerSerializer < ActiveModel::Serializer
     :name,
     :state,
     :address,
-    :splitBilling,
-    :createdAt,
-    :updatedAt,
-    :players
+    :party_cloud_id
+
+  attribute :state_name, :key => :state
+  attribute :shared?, :key => :splitBilling
+  attribute :created_at, :key => :createdAt
+  attribute :updated_at, :key => :updatedAt
+
+  has_one :creator, serializer: UserSerializer
+  has_one :funpack, serializer: FunpackSerializer
+
+  has_many :players, serializer: PlayerSerializer
 
   def address
     object.address.to_s
   end
 
-  def state
-    object.state_name
-  end
-
-  def partyCloudId; object.party_cloud_id end
-  def splitBilling; object.shared? end
-  def createdAt; object.created_at end
-  def updatedAt; object.updated_at end
-
   def players
-    $redis.smembers("servers:#{object.party_cloud_id}:players")
+    options[:redis].smembers("servers:#{object.party_cloud_id}:players").map do |nick|
+      Player.new(nick)
+    end
   end
 
 end

@@ -1,2 +1,5 @@
 require 'active_model_serializers'
+require 'serializers/funpack_serializer'
+require 'serializers/player_serializer'
 require 'serializers/server_serializer'
+require 'serializers/user_serializer'

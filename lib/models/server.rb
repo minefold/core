@@ -9,7 +9,19 @@ class Server < ActiveRecord::Base
     stopping: 3
   }
 
+
+# Associations
+
+  belongs_to :funpack
+  belongs_to :creator, class_name: 'User'
+
+
+# Validations
+
   validates_presence_of :state
+
+
+# Other
 
   # TODO Actuall embed Game
   def static_address?
