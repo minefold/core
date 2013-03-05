@@ -1,4 +1,3 @@
 module Core
-  VERSION = '0.0.2'.freeze
+  VERSION = "0.0.1"
 end
-

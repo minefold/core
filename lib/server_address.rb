@@ -14,8 +14,24 @@ class ServerAddress
     end
   end
 
-  def ip
-    [server.host, server.port].compact.join(':')
+  def url
+    if server.static_address?
+      if server.cname?
+        server.cname
+      else
+        default
+      end
+    else
+      [host, port].compact.join(':')
+    end
+  end
+
+  def host
+    server.host
+  end
+
+  def port
+    server.port
   end
 
   def address

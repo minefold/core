@@ -1,35 +1,35 @@
-require 'player'
-require 'serializers/funpack_serializer'
-require 'serializers/player_serializer'
-require 'serializers/user_serializer'
+require 'serializer'
+require 'ipaddr'
 
-class ServerSerializer < ActiveModel::Serializer
-  root false
+class ServerSerializer < Serializer
 
-  attributes :id,
-    :name,
-    :state,
-    :address,
-    :party_cloud_id
+  attribute :id
+  attribute :name
+  attribute :creator_id
+  attribute :funpack_id
+  attribute :created_at
+  attribute :updated_at
 
-  attribute :state_name, :key => :state
-  attribute :shared?, :key => :splitBilling
-  attribute :created_at, :key => :createdAt
-  attribute :updated_at, :key => :updatedAt
+  def as_json
+    json = super
 
-  has_one :creator, serializer: UserSerializer
-  has_one :funpack, serializer: FunpackSerializer
+    json[:state] = object.state_name
+    json[:setings] = object.settings
 
-  has_many :players, serializer: PlayerSerializer
-
-  def address
-    object.address.to_s
-  end
-
-  def players
-    options[:redis].smembers("servers:#{object.party_cloud_id}:players").map do |nick|
-      Player.new(nick)
+    if object.cname?
+      json[:server_url] = object.cname
+    elsif object.static_address?
+      json[:server_url] =  "#{object.id}.fun-#{object.funpack_id}.us-east-1.foldserver.com"
     end
+
+    if object.up?
+      if object.host !=~ /(minefold|foldserver)\.com$/
+        json[:ip] = object.host
+      end
+      json[:port] = object.port
+    end
+
+    json
   end
 
 end

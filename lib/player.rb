@@ -1,11 +1,11 @@
 class Player
 
   attr_reader :nick
+  attr_reader :account
 
-  def initialize(nick)
-    @nick = nick
+  def initialize(params)
+    @nick = params.fetch(:nick)
+    @account = params[:account]
   end
-
-  alias_method :read_attribute_for_serialization, :send
 
 end
