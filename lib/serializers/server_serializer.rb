@@ -14,7 +14,7 @@ class ServerSerializer < Serializer
     json = super
 
     json[:state] = object.state_name
-    json[:setings] = object.settings
+    json[:settings] = object.settings
 
     if object.cname?
       json[:server_url] = object.cname
