@@ -13,6 +13,8 @@ class ServerSerializer < Serializer
   def as_json
     json = super
 
+    json[:url] = "https://api.minefold.com/servers/#{object.id}"
+
     json[:state] = object.state_name
     json[:settings] = object.settings
 

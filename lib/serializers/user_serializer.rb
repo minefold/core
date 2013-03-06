@@ -7,4 +7,10 @@ class UserSerializer < Serializer
   attribute :created_at
   attribute :updated_at
 
+  def as_json
+    json = super
+    json[:url] = "https://api.minefold.com/users/#{user.id}"
+    json
+  end
+
 end
