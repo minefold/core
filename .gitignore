@@ -20,3 +20,4 @@ doc/
 .rspec
 
 *.gem
+Gemfile.lock
