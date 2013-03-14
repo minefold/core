@@ -1,4 +1,4 @@
-require 'core/accounts/facebook'
+require 'accounts/facebook'
 
-describe Core::Accounts::Facebook do
+describe Accounts::Facebook do
 end

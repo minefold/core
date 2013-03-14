@@ -1,4 +1,4 @@
-require 'core/funpack'
+require 'funpack'
 
-describe Core::Funpack do
+describe Funpack do
 end

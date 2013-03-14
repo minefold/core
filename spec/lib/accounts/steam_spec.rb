@@ -1,4 +1,4 @@
-require 'core/accounts/steam'
+require 'accounts/steam'
 
-describe Core::Accounts::Steam do
+describe Accounts::Steam do
 end

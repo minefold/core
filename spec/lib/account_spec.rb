@@ -1,4 +1,4 @@
-require 'core/account'
+require 'account'
 
-describe Core::Account do
+describe Account do
 end

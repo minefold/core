@@ -1,4 +1,4 @@
-require 'core/user'
+require 'user'
 
-describe Core::User do
+describe User do
 end

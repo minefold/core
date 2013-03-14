@@ -1,6 +1,6 @@
-require 'core/game'
+require 'game'
 
-describe Core::Game do
+describe Game do
 
   subject { described_class.new(
     id: 1,

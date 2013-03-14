@@ -1,4 +1,4 @@
-require 'core/server'
+require 'server'
 
-describe Core::Server do
+describe Server do
 end

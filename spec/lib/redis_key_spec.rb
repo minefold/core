@@ -1,12 +1,12 @@
-require 'core/redis_key'
+require 'redis_key'
 
-describe Core::RedisKey do
+describe RedisKey do
 
   describe "#to_s" do
 
     it "generates nice keys for classes" do
       subject = described_class.new(described_class)
-      expect(subject.to_s).to eq("core/redis_key")
+      expect(subject.to_s).to eq("redis_key")
     end
 
     it "generates nice keys for objects" do
@@ -22,12 +22,12 @@ describe Core::RedisKey do
 
     it "postfixes keys" do
       subject = described_class.new(described_class, :id)
-      expect(subject.to_s).to eq("core/redis_key:id")
+      expect(subject.to_s).to eq("redis_key:id")
     end
 
     it "prefixes keys" do
       subject = described_class.new(:stream, described_class)
-      expect(subject.to_s).to eq("stream:core/redis_key")
+      expect(subject.to_s).to eq("stream:redis_key")
     end
 
   end

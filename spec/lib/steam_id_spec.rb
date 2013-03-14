@@ -1,6 +1,6 @@
-require 'core/steam_id'
+require 'steam_id'
 
-describe Core::SteamID do
+describe SteamID do
 
   it "#to_i converts to 64 bit style" do
     described_class.new('STEAM_0:1:24804711').to_i.

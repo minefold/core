@@ -20,7 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'friendly_id'
   gem.add_dependency 'brock'
   gem.add_dependency 'uniquify'
-  gem.add_dependency 'devise'
   gem.add_development_dependency 'rspec'
 
   gem.files = %w( Gemfile README.md fold-core.gemspec ) +

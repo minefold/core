@@ -1,4 +1,4 @@
-require 'core/accounts/mojang'
+require 'accounts/mojang'
 
-describe Core::Accounts::Mojang do
+describe Accounts::Mojang do
 end
