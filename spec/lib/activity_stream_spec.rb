@@ -1,14 +1,14 @@
-require './lib/activity_stream'
+require 'core/activity_stream'
 
-describe ActivityStream do
+describe Core::ActivityStream do
 
   let(:model) { stub(id: 123) }
   let(:redis) { stub }
 
   subject { described_class.new(model, redis) }
 
-  it "#key is a RedisKey" do
-    expect(subject.key).to be_a(RedisKey)
+  it "#key is a Core::RedisKey" do
+    expect(subject.key).to be_a(Core::RedisKey)
   end
 
   describe "#add" do

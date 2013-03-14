@@ -1,6 +1,6 @@
-require './lib/personal_name'
+require 'core/personal_name'
 
-describe PersonalName do
+describe Core::PersonalName do
 
   let(:user) {
     stub(username: 'chrislloyd', first_name: nil, last_name: nil, name: nil)

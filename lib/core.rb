@@ -1,6 +1,5 @@
-require 'models'
-require 'serializers'
 require 'core/version'
+require 'core/redis'
 
 module Core
 end

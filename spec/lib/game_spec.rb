@@ -1,6 +1,6 @@
-require './lib/game'
+require 'core/game'
 
-describe Game do
+describe Core::Game do
 
   subject { described_class.new(
     id: 1,
