@@ -15,6 +15,7 @@ class Funpack < ActiveRecord::Base
 # Validations
 
   validates_presence_of :name
+  validates_presence_of :creator
 
 
 # Other

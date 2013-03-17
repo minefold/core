@@ -2,7 +2,7 @@ require 'game'
 require 'accounts/mojang'
 
 module Games
-  class Minecraft < Core::Game
+  class Minecraft < Game
 
     def auth?
       true

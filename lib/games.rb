@@ -1,2 +1,2 @@
-require 'core/games/minecraft'
-require 'core/games/team_fortress_2'
+require 'games/minecraft'
+require 'games/team_fortress_2'

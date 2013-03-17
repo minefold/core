@@ -15,6 +15,9 @@ require 'player_session'
 require 'product'
 require 'redis_key'
 require 'serializer'
+require 'serializers'
+require 'server_access_policy'
+require 'server_access_policies'
 require 'server_address'
 require 'server_session'
 require 'server'
@@ -25,7 +28,7 @@ require 'user'
 module Core
 
   GAMES = GameLibrary.new([
-    Core::Games::Minecraft.new(
+    Games::Minecraft.new(
       id: 1,
       name: 'Minecraft',
       slug: 'minecraft',
@@ -33,7 +36,7 @@ module Core
       published_at: DateTime.new(2011, 4, 1),
       url: 'https://minecraft.net/store'
     ),
-    Core::Games::TeamFortress2.new(
+    Games::TeamFortress2.new(
       id: 2,
       name: 'Team Fortress 2',
       slug: 'team-fortress-2',

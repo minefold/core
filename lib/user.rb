@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
 
   # TODO Doesn't order
   def last_played_at
-    sessions.order_by(:started_at).reverse_order.pluck(:started_at).first
+    sessions.order(:started_at).reverse_order.pluck(:started_at).first
   end
 
 end

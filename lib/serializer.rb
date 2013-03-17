@@ -17,14 +17,12 @@ class Serializer
     @object = object
   end
 
-  def as_json
-    self.class.attributes.each_with_object({}) do |attr, json|
-      json[attr] = @object.send(attr)
-    end
+  def payload
+    { id: object.id, object: object.class.name.to_s.downcase }
   end
 
   def to_json(*args)
-    as_json.to_json(*args)
+    payload.to_json(*args)
   end
 
 end

@@ -12,7 +12,6 @@ class ServerSession < ActiveRecord::Base
 # Validations
 
   validates_presence_of :server_id
-  validates_presence_of :creator_id
-  validates_presence_of :started_at
+  validates_presence_of :user_id
 
 end
