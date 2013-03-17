@@ -10,11 +10,8 @@ class Server < ActiveRecord::Base
 
   States = {
     down: 0,
-    starting: 1,
-    up: 2,
-    stopping: 3,
-    restarting: 4,
-    crashed: 5
+    up: 1,
+    crashed: 2
   }
 
 
@@ -70,43 +67,18 @@ class Server < ActiveRecord::Base
   state_machine(:initial => :idle) do
     States.each {|name, value| state(name, value: value) }
 
-    event(:start) { transition([:down, :crashed] => :starting) }
-    event(:started) { transition([:starting] => :up) }
-    event(:restart) { transition([:up] => :restarting) }
-    event(:restarted) { transition([:restarting] => :up)}
-    event(:stop) { transition([:starting, :up] => :stopping) }
-    event(:stopped) { transition([:up, :stopping] => :down) }
-
-    before_transition all => :starting, :do => :start_party_cloud_server!
-    before_transition all => :restarting, :do => :restart_party_cloud_server!
-    before_transition all => :stopping, :do => :stop_party_cloud_server!
-
-    before_transition all => :down, :do => :clear_ip_and_port
+    event(:start) { transition([:down, :up] => :up) }
+    event(:stop) { transition([:up, :down] => :down) }
   end
 
-
-  def start_party_cloud_server!
-    PartyCloud.start_server!(
-      party_cloud_id,
-      attributes_for_party_cloud.to_json
-    )
+  def current_session
+    sessions.active.first
   end
 
-  def restart_party_cloud_server!
-    PartyCloud.restart_server!(
-      party_cloud_id,
-      attributes_for_party_cloud.to_json
-    )
-  end
+  delegate :ip,   :to => :current_session
+  delegate :port, :to => :current_session
 
-  def stop_party_cloud_server!
-    PartyCloud.stop_server!(party_cloud_id)
-  end
-
-
-  def clear_ip_and_port
-    self.ip, self.port = nil, nil
-  end
+# --
 
   def attributes_for_party_cloud
     { name: name,

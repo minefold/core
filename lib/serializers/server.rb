@@ -27,7 +27,7 @@ module Serializers
       o[:players] = object.players.count
 
       if object.up?
-        o[:ip] = object.host
+        o[:ip] = object.ip
         o[:port] = object.port
       end
 
