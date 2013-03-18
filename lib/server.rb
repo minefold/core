@@ -10,8 +10,8 @@ class Server < ActiveRecord::Base
 
   States = {
     down: 0,
-    up: 1,
-    crashed: 2
+    up: 2,
+    crashed: 4
   }
 
 
